@@ -53,15 +53,15 @@ struct CarouselView<Content: View>: View {
                     ForEach(0..<list.count, id: \.self) { index in
                         Image(list[index])
                             .resizable()
-                            .aspectRatio(40/40, contentMode: .fit)
+                            .aspectRatio(3/3, contentMode: .fit)
                             .scaledToFit()
                             .clipped()
                             .cornerRadius(12)
                             .scaleEffect(10/9.7)
                             .scrollTransition{ content, phase in
                                 content
-                                    .opacity(phase.isIdentity ? 1 : 0.7)
-                                    .scaleEffect(y: phase.isIdentity ? 1 : 0.8)
+                                    .opacity(phase.isIdentity ? 0.9 : 0.7)
+                                    .scaleEffect(y: phase.isIdentity ? 0.9 : 0.6)
                             }
                     }
                 }
