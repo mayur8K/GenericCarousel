@@ -92,15 +92,6 @@ struct CarouselView<Content: View>: View {
             }
         }
     }
-    
-    func calculateScale(geo: GeometryProxy, screenWidth: CGFloat, itemWidth: CGFloat) -> CGFloat {
-        let centerX = screenWidth/2
-        let itemCenterX = geo.frame(in: .global).midX
-        let distance = abs(centerX - itemCenterX)
-        let maxDistance = screenWidth/2
-        let scale = max(1-(distance/maxDistance), 0.8)//scale between 0.8 to 1
-        return scale
-    }
 }
 
 #Preview {
