@@ -31,13 +31,14 @@ struct CarouselView<Content: View>: View {
     var pageWidth: CGFloat
     var pageHeight: CGFloat
     @State private var scrollPosition: Int?
+    @State private var currentIndex = 0
+    
     private let animation: Animation = .default
     let content: Content
     let list: [String]
     private let itemDimension = UIScreen.main.bounds.width * 0.5
     private let itemSpacing = CGFloat(16)
     private let scrollViewHorizontalInset = CGFloat(8)
-    
     
     init(list: [String], width: CGFloat, height: CGFloat, @ViewBuilder content: () -> Content) {
         self.pageWidth = width
@@ -56,7 +57,7 @@ struct CarouselView<Content: View>: View {
                             .aspectRatio(3/3, contentMode: .fit)
                             .scaledToFit()
                             .clipped()
-                            .cornerRadius(12)
+                            .cornerRadius(currentIndex == index ? 10 : 0)
                             .scaleEffect(10/9.7)
                             .scrollTransition{ content, phase in
                                 content
@@ -75,6 +76,7 @@ struct CarouselView<Content: View>: View {
             .scrollIndicators(.hidden)
             .onChange(of: scrollPosition) {
                 guard let scrollPosition = scrollPosition else {return}
+                currentIndex = scrollPosition
                 print(scrollPosition)
                 
             }
